@@ -11,18 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407125947) do
+ActiveRecord::Schema.define(version: 20160407130315) do
 
   create_table "casts", force: :cascade do |t|
     t.string   "title",      null: false
     t.string   "video_url",  null: false
     t.integer  "user_id",    null: false
-    t.integer  "tagging_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "tagging_id"
   end
 
-  add_index "casts", ["tagging_id"], name: "index_casts_on_tagging_id"
   add_index "casts", ["user_id"], name: "index_casts_on_user_id"
 
   create_table "comments", force: :cascade do |t|
