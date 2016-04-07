@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407125601) do
+ActiveRecord::Schema.define(version: 20160407125702) do
 
   create_table "casts", force: :cascade do |t|
     t.string   "title",      null: false
@@ -24,6 +24,18 @@ ActiveRecord::Schema.define(version: 20160407125601) do
 
   add_index "casts", ["tagging_id"], name: "index_casts_on_tagging_id"
   add_index "casts", ["user_id"], name: "index_casts_on_user_id"
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer  "rating",     null: false
+    t.integer  "user_id",    null: false
+    t.integer  "cast_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "ratings", ["cast_id"], name: "index_ratings_on_cast_id"
+  add_index "ratings", ["rating"], name: "index_ratings_on_rating"
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name",      null: false
