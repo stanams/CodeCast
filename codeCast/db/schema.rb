@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407125853) do
+ActiveRecord::Schema.define(version: 20160407125947) do
 
   create_table "casts", force: :cascade do |t|
     t.string   "title",      null: false
@@ -47,6 +47,16 @@ ActiveRecord::Schema.define(version: 20160407125853) do
   add_index "ratings", ["cast_id"], name: "index_ratings_on_cast_id"
   add_index "ratings", ["rating"], name: "index_ratings_on_rating"
   add_index "ratings", ["user_id"], name: "index_ratings_on_user_id"
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer  "tag_id",     null: false
+    t.integer  "cast_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "taggings", ["cast_id"], name: "index_taggings_on_cast_id"
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id"
 
   create_table "tags", force: :cascade do |t|
     t.string   "name",       null: false
